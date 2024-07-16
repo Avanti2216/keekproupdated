@@ -1,6 +1,7 @@
 import Dashboard from "../Components/Dashboard/Dashboard";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import ManageCampaign from "../ManageCampaign/ManageCampaign";
 
 const MainRouter = () => {
   return (
@@ -17,12 +18,7 @@ const MainRouter = () => {
         />
         <Route
           path="/manageCampaign"
-          element={
-            <div className="h-screen w-screen flex items-center justify-center bg-slate-400">
-              {" "}
-              Manage Campaign
-            </div>
-          }
+          element={<ManageCampaign/>}
         />
         <Route
           path="/calendar"
