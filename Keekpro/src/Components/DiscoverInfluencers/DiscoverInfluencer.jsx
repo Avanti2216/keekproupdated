@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { BsLayoutThreeColumns } from "react-icons/bs";
 import { Mycontext } from "../../utils/Context";
 import down from "../../Assets/down.svg";
 import up from "../../Assets/up.svg";
@@ -226,12 +227,11 @@ export const DiscoverInfluencers = () => {
             <div className="flex space-x-2">
           <button
             onClick={setThreeColumns}
-            className={`p-2 rounded ${columns === 3 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
           >
+            <BsLayoutThreeColumns />
           </button>
           <button
             onClick={setFourColumns}
-            className={`p-2 rounded ${columns === 4 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
           >
 
           </button>
