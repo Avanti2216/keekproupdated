@@ -14,7 +14,9 @@ const AdminPanel = () => {
       <div className="flex-row ">
         <NavigationBar/>
         {/* <Dashboard  /> */}
-        <MainRouter/>
+        <div>
+          <MainRouter/>
+        </div>
       </div>
     </div>
   )

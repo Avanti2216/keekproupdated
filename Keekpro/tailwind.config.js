@@ -8,6 +8,9 @@ module.exports = {
       fontFamily: {
         body: ["Open Sans", "sans-serif", "Arial", "Helvetica Neue", "Inter"],
       },
+      colors: {
+        lightBlue: '#2463EB',
+      },
     },
   },
   plugins: [],
