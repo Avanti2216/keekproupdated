@@ -11,7 +11,7 @@ import fb from "../../Assets/Facebook.svg";
 import insta from "../../Assets/instagram.svg";
 import snap from "../../Assets/Snapchat.svg";
 import x from "../../Assets/X.svg";
-import cross from '../../Assets/cross.svg'
+import cross from "../../Assets/cross.svg";
 
 const influencers = [
   {
@@ -142,14 +142,37 @@ const influencers = [
   },
 ];
 
-const locations = ["NewDelhi", "Mumbai","Hydrabad","Nagpur","Bhiwapur","Crpf","ARC","Bhande Plot"];
-const categories = ["Fashion", "Lifestyle","Doctor","Beauty","Automobile","Fitness","Food","Travel"];
-const gender = ["Male", "Female","Other"];
-const reach = ["nano-1kTo10k","micro-10kto100k","macro-100kto1M","mega11M+"];
-const followers = ["1000-10000","10000-50000","500000-100000","100000-500000","500000-10"];
+const locations = ["NewDelhi", "Mumbai", "Hyderabad", "Nagpur"];
+const categories = [
+  "Fashion",
+  "Lifestyle",
+  "Doctor",
+  "Beauty",
+  "Automobile",
+  "Fitness",
+  "Food",
+  "Travel",
+];
+const gender = ["Male", "Female", "Other"];
+const reach = ["nano-1kTo10k", "micro-10kto100k", "macro-100kto1M", "mega11M+"];
+const followers = [
+  "1000-10000",
+  "10000-50000",
+  "500000-100000",
+  "100000-500000",
+  "500000-10",
+];
 const budget = [];
 const rating = [];
-const age = [];
+const age = [
+  "12-17 years",
+  "18-24 years",
+  "25-34 years",
+  "35-44 years",
+  "45-54 years",
+  "55-64 years",
+  "64+ years",
+];
 
 const filters = {
   Location: locations,
@@ -172,6 +195,10 @@ export const DiscoverInfluencers = () => {
     });
     setFilters(updatedFilters);
   };
+  const [columns, setColumns] = useState(3);
+  const setThreeColumns = () => setColumns(3);
+  const setFourColumns = () => setColumns(4);
+
   return (
     <div
       className="flex"
@@ -180,10 +207,12 @@ export const DiscoverInfluencers = () => {
           ? "left-[100px] w-[calc(100%-110px)]"
           : "left-[350px] w-[calc(100%-360px)]"
       }  overflow-y-auto  bg-[#F5F5F5] space-y-4 p-4 rounded-[14px] my-4 `}
-      style={{flexDirection:"column"}}
+      style={{ flexDirection: "column" }}
     >
-      <div className="w-4/4 p-4 rounded-[10px] border-r bg-white font-blue font-bold text-lg" >Discover Influencer</div>
-      <div style={{display:"flex",flexDirection:"row"}}>
+      <div className="w-4/4 p-4 rounded-[10px] border-r bg-white font-blue font-bold text-lg">
+        Discover Influencer
+      </div>
+      <div style={{ display: "flex", flexDirection: "row" }}>
         <aside className="w-1/4 p-4 rounded-[10px] border-r bg-white">
           <Panel
             options={filters}
@@ -192,8 +221,23 @@ export const DiscoverInfluencers = () => {
           />
         </aside>
         <main className="w-3/4 p-4">
-          <h2 className="text-lg font-bold">All Influencers</h2>
-          <div className="filter-btn-panel">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold">All Influencers</h2>
+            <div className="flex space-x-2">
+          <button
+            onClick={setThreeColumns}
+            className={`p-2 rounded ${columns === 3 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+          >
+          </button>
+          <button
+            onClick={setFourColumns}
+            className={`p-2 rounded ${columns === 4 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'}`}
+          >
+
+          </button>
+        </div>
+          </div>
+          <div className="filter-btn-panel flex flex-wrap">
             {selectedFilters &&
               selectedFilters.map((item) => {
                 return (
@@ -209,7 +253,11 @@ export const DiscoverInfluencers = () => {
                 );
               })}
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div
+            className={`grid gap-4 ${
+              columns === 3 ? "grid-cols-3" : "grid-cols-4"
+            }`}
+          >
             {influencers.map((influencer) => (
               <Card key={influencer.id} influencer={influencer} />
             ))}
@@ -248,7 +296,7 @@ const Card = ({ influencer }) => {
           alt={influencer.name}
           className="w-full h-40 object-cover rounded-md mb-4 inf-cover"
         />
-        <button className="view-inf-btn">View Influencer</button>
+        <button className="view-inf-btn">View Profile</button>
       </div>
       <div className="p-4">
         <h3 className="font-bold text-lg flex gap-1">
@@ -318,15 +366,15 @@ const DropDown = ({ title, values, setSelectedFilters, selected }) => {
             {values.map((item) => {
               return (
                 <div className="space-y-2">
-                  <label className="block">
-                  {item}
+                  <label className="block flex justify-between items-center">
+                    {item}
                     <input
                       onChange={handleOnChange}
                       type="checkbox"
-                      checked={selected.includes(item) ? true : false}
-                      class="mr-2 text-lightBlue"
+                      checked={selected.includes(item)}
+                      className="text-lightBlue"
                       title={item}
-                    />{" "}
+                    />
                   </label>
                 </div>
               );
